@@ -9,11 +9,16 @@ namespace Tasks
 {
     public class Projects : IEnumerable<Project>
     {
-        private IList<Project> _tasks = new List<Project>();
+        private IList<Project> _projects = new List<Project>();
+
+        public Projects(IDictionary<string, IList<Task>> projectsMap)
+        {
+            _projects = projectsMap.Select(x => new Project(x.Key, x.Value)).ToList();
+        }
 
         public IEnumerator<Project> GetEnumerator()
         {
-            return _tasks.GetEnumerator();
+            return _projects.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
