@@ -61,17 +61,6 @@ namespace Tasks
 			}
 		}
 
-		private void Show()
-		{
-			foreach (var project in tasks) {
-				console.WriteLine(project.Key);
-				foreach (var task in project.Value) {
-					console.WriteLine("    [{0}] {1}: {2}", (task.Done ? 'x' : ' '), task.Id, task.Description);
-				}
-				console.WriteLine();
-			}
-		}
-
 		private void Add(string commandLine)
 		{
 			var subcommandRest = commandLine.Split(" ".ToCharArray(), 2);
