@@ -8,12 +8,12 @@ namespace Tasks
 {
     public class ShowTasksCommand
     {
-        public ShowTasksCommand(IDictionary<string, IList<Task>> tasks)
+        public ShowTasksCommand(IDictionary<string, IList<Task>> projects)
         {
-            Tasks = tasks;
+            Projects = projects;
         }
 
-        public IDictionary<string, IList<Task>> Tasks { get; }
+        public IDictionary<string, IList<Task>> Projects { get; }
 
         public class ShowTasksCommandHandler
         {
@@ -26,7 +26,7 @@ namespace Tasks
 
             public void Execute(ShowTasksCommand command)
             {
-                foreach (var project in command.Tasks)
+                foreach (var project in command.Projects)
                 {
                     _console.WriteLine(project.Key);
                     foreach (var task in project.Value)
