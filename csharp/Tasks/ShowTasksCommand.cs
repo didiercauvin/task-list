@@ -24,7 +24,7 @@ namespace Tasks
                 _console = console;
             }
 
-            public void Handler(ShowTasksCommand command)
+            public void Execute(ShowTasksCommand command)
             {
                 foreach (var project in command.Tasks)
                 {

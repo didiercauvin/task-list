@@ -41,7 +41,7 @@ namespace Tasks
 			var command = commandRest[0];
 			switch (command) {
 			case "show":
-				new ShowTasksCommand.ShowTasksCommandHandler(console).Handler(new ShowTasksCommand(tasks));
+				new ShowTasksCommand.ShowTasksCommandHandler(console).Execute(new ShowTasksCommand(tasks));
 				break;
 			case "add":
 				Add(commandRest[1]);
