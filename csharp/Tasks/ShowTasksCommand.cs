@@ -10,6 +10,13 @@ namespace Tasks
     {
         public class ShowTasksCommandHandler
         {
+            private readonly IConsole _console;
+
+            public ShowTasksCommandHandler(IConsole console)
+            {
+                _console = console;
+            }
+
             public void Handler(ShowTasksCommand command)
             {
 
