@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Tasks
 {
-    public class Projects : IEnumerable<Task>
+    public class Projects : IEnumerable<Project>
     {
-        private IList<Task> _tasks = new List<Task>();
+        private IList<Project> _tasks = new List<Project>();
 
-        public IEnumerator<Task> GetEnumerator()
+        public IEnumerator<Project> GetEnumerator()
         {
             return _tasks.GetEnumerator();
         }
