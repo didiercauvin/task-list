@@ -8,6 +8,13 @@ namespace Tasks
 {
     public class ShowTasksCommand
     {
+        public ShowTasksCommand(IDictionary<string, IList<Task>> tasks)
+        {
+            Tasks = tasks;
+        }
+
+        public IDictionary<string, IList<Task>> Tasks { get; }
+
         public class ShowTasksCommandHandler
         {
             private readonly IConsole _console;
