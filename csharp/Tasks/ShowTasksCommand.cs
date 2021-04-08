@@ -26,7 +26,15 @@ namespace Tasks
 
             public void Handler(ShowTasksCommand command)
             {
-
+                foreach (var project in command.Tasks)
+                {
+                    _console.WriteLine(project.Key);
+                    foreach (var task in project.Value)
+                    {
+                        _console.WriteLine("    [{0}] {1}: {2}", (task.Done ? 'x' : ' '), task.Id, task.Description);
+                    }
+                    _console.WriteLine();
+                }
             }
         }
     }
