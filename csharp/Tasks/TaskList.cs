@@ -8,7 +8,7 @@ namespace Tasks
 	{
 		private const string QUIT = "quit";
 
-		private readonly IDictionary<string, IList<Task>> projects = new Dictionary<string, IList<Task>>();
+		private readonly Projects projects = new Projects(new Dictionary<string, IList<Task>>());
 		private readonly IConsole console;
 
 		private long lastId = 0;
@@ -41,7 +41,7 @@ namespace Tasks
 			var command = commandRest[0];
 			switch (command) {
 			case "show":
-				new ShowProjectsCommand.Handler(console).Execute(new ShowProjectsCommand(new Projects(projects)));
+				new ShowProjectsCommand.Handler(console).Execute(new ShowProjectsCommand(projects));
 				break;
 			case "add":
 				Add(commandRest[1]);
@@ -75,17 +75,18 @@ namespace Tasks
 
 		private void AddProject(string name)
 		{
-			projects[name] = new List<Task>();
+			projects.Add(name);
 		}
 
-		private void AddTask(string project, string description)
+		private void AddTask(string projectName, string description)
 		{
-			if (!projects.TryGetValue(project, out IList<Task> projectTasks))
+			var project = projects.FirstOrDefault(x => x.Name == projectName);
+			if (project == null)
 			{
-				Console.WriteLine("Could not find a project with the name \"{0}\".", project);
+				Console.WriteLine("Could not find a project with the name \"{0}\".", projectName);
 				return;
 			}
-			projectTasks.Add(new Task { Id = NextId(), Description = description, Done = false });
+			project.Tasks.Add(new Task { Id = NextId(), Description = description, Done = false });
 		}
 
 		private void Check(string idString)
@@ -102,7 +103,7 @@ namespace Tasks
 		{
 			int id = int.Parse(idString);
 			var identifiedTask = projects
-				.Select(project => project.Value.FirstOrDefault(task => task.Id == id))
+				.Select(project => project.Tasks.FirstOrDefault(task => task.Id == id))
 				.Where(task => task != null)
 				.FirstOrDefault();
 			if (identifiedTask == null) {
