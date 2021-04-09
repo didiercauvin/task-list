@@ -8,12 +8,14 @@ namespace Tasks
 {
     public class UncheckTaskCommand
     {
-        public UncheckTaskCommand(Projects projects)
+        public UncheckTaskCommand(Projects projects, string taskId)
         {
             Projects = projects;
+            TaskId = taskId;
         }
 
         public Projects Projects { get; }
+        public string TaskId { get; }
 
         public class Handler
         {
