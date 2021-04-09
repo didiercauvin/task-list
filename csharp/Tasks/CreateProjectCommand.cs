@@ -8,6 +8,8 @@ namespace Tasks
 {
     public class CreateProjectCommand
     {
+        public Projects Projects { get; }
+
         public class Handler
         {
             public void Execute(CreateProjectCommand command)
