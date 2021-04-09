@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 
 namespace Tasks
 {
-    public class ShowTasksCommand
+    public class ShowProjectsCommand
     {
-        public ShowTasksCommand(IDictionary<string, IList<Task>> projects)
+        public ShowProjectsCommand(Projects projects)
         {
             Projects = projects;
         }
 
-        public IDictionary<string, IList<Task>> Projects { get; }
+        public Projects Projects { get; }
 
-        public class ShowTasksCommandHandler
+        public class Handler
         {
             private readonly IConsole _console;
 
-            public ShowTasksCommandHandler(IConsole console)
+            public Handler(IConsole console)
             {
                 _console = console;
             }
 
-            public void Execute(ShowTasksCommand command)
+            public void Execute(ShowProjectsCommand command)
             {
                 foreach (var project in command.Projects)
                 {
-                    _console.WriteLine(project.Key);
-                    foreach (var task in project.Value)
+                    _console.WriteLine(project.Name);
+                    foreach (var task in project.Tasks)
                     {
                         _console.WriteLine("    [{0}] {1}: {2}", (task.Done ? 'x' : ' '), task.Id, task.Description);
                     }
