@@ -66,7 +66,7 @@ namespace Tasks
 			var subcommandRest = commandLine.Split(" ".ToCharArray(), 2);
 			var subcommand = subcommandRest[0];
 			if (subcommand == "project") {
-				AddProject(subcommandRest[1]);
+				new CreateProjectCommand.Handler().Execute(new CreateProjectCommand(projects, subcommandRest[1]));
 			} else if (subcommand == "task") {
 				var projectTask = subcommandRest[1].Split(" ".ToCharArray(), 2);
 				AddTask(projectTask[0], projectTask[1]);
