@@ -21,7 +21,7 @@ namespace Tasks
         {
             public void Execute(CreateProjectCommand command)
             {
-
+                command.Projects.Add(command.Name);
             }
         }
     }
