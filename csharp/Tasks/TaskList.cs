@@ -75,7 +75,7 @@ namespace Tasks
 
 		private void Check(string idString)
 		{
-			SetDone(idString, true);
+			new CheckTaskCommand.Handler(console).Execute(new CheckTaskCommand(projects, idString));
 		}
 
 		private void Uncheck(string idString)
