@@ -8,7 +8,7 @@ namespace Tasks
 	{
 		private const string QUIT = "quit";
 
-		private readonly IDictionary<string, IList<Task>> tasks = new Dictionary<string, IList<Task>>();
+		private readonly IDictionary<string, IList<Task>> projects = new Dictionary<string, IList<Task>>();
 		private readonly IConsole console;
 
 		private long lastId = 0;
@@ -41,7 +41,7 @@ namespace Tasks
 			var command = commandRest[0];
 			switch (command) {
 			case "show":
-				new ShowTasksCommand.ShowTasksCommandHandler(console).Execute(new ShowTasksCommand(tasks));
+				new ShowTasksCommand.ShowTasksCommandHandler(console).Execute(new ShowTasksCommand(projects));
 				break;
 			case "add":
 				Add(commandRest[1]);
@@ -75,12 +75,12 @@ namespace Tasks
 
 		private void AddProject(string name)
 		{
-			tasks[name] = new List<Task>();
+			projects[name] = new List<Task>();
 		}
 
 		private void AddTask(string project, string description)
 		{
-			if (!tasks.TryGetValue(project, out IList<Task> projectTasks))
+			if (!projects.TryGetValue(project, out IList<Task> projectTasks))
 			{
 				Console.WriteLine("Could not find a project with the name \"{0}\".", project);
 				return;
@@ -101,7 +101,7 @@ namespace Tasks
 		private void SetDone(string idString, bool done)
 		{
 			int id = int.Parse(idString);
-			var identifiedTask = tasks
+			var identifiedTask = projects
 				.Select(project => project.Value.FirstOrDefault(task => task.Id == id))
 				.Where(task => task != null)
 				.FirstOrDefault();
