@@ -19,6 +19,13 @@ namespace Tasks
 
         public class Handler
         {
+            private readonly IConsole _console;
+
+            public Handler(IConsole console)
+            {
+                _console = console;
+            }
+
             public void Execute(UncheckTaskCommand command)
             {
 
