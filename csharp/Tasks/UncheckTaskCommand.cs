@@ -8,6 +8,13 @@ namespace Tasks
 {
     public class UncheckTaskCommand
     {
+        public UncheckTaskCommand(Projects projects)
+        {
+            Projects = projects;
+        }
+
+        public Projects Projects { get; }
+
         public class Handler
         {
             public void Execute(UncheckTaskCommand command)
