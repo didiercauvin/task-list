@@ -63,10 +63,12 @@ namespace Tasks
 			Execute("check 5");
 			Execute("check 6");
 
+			Execute("uncheck 1");
+
 			Execute("show");
 			ReadLines(
 				"secrets",
-				"    [x] 1: Eat more donuts.",
+				"    [ ] 1: Eat more donuts.",
 				"    [ ] 2: Destroy all humans.",
 				"",
 				"training",
