@@ -11,9 +11,9 @@ namespace Tasks
     {
         private IList<Project> _projects = new List<Project>();
 
-        public Projects(IDictionary<string, IList<Task>> projectsMap)
+        public Projects()
         {
-            _projects = projectsMap.Select(x => new Project(x.Key, x.Value)).ToList();
+            _projects = new List<Project>();
         }
 
         public void Add(string name)

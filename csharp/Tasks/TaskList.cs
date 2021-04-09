@@ -8,7 +8,7 @@ namespace Tasks
 	{
 		private const string QUIT = "quit";
 
-		private readonly Projects projects = new Projects(new Dictionary<string, IList<Task>>());
+		private readonly Projects projects = new Projects();
 		private readonly IConsole console;
 
 		private long lastId = 0;
