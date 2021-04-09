@@ -16,6 +16,11 @@ namespace Tasks
             _projects = projectsMap.Select(x => new Project(x.Key, x.Value)).ToList();
         }
 
+        public void Add(string name)
+        {
+            _projects.Add(new Project(name, new List<Task>()));
+        }
+
         public IEnumerator<Project> GetEnumerator()
         {
             return _projects.GetEnumerator();
