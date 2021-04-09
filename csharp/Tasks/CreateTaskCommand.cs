@@ -21,6 +21,13 @@ namespace Tasks
 
         public class Handler
         {
+            private readonly Func<long> _nextId;
+
+            public Handler(Func<long> nextId)
+            {
+                _nextId = nextId;
+            }
+
             public void Execute(CreateTaskCommand command)
             {
 
