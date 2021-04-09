@@ -30,7 +30,13 @@ namespace Tasks
 
             public void Execute(CreateTaskCommand command)
             {
-
+                var project = command.Projects.FirstOrDefault(x => x.Name == command.ProjectName);
+                if (project == null)
+                {
+                    Console.WriteLine("Could not find a project with the name \"{0}\".", command.ProjectName);
+                    return;
+                }
+                project.Add(new Task { Id = _nextId(), Description = command.TaskDescription, Done = false });
             }
         }
     }
