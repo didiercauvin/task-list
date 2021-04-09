@@ -16,5 +16,10 @@ namespace Tasks
 
         public string Name { get; }
         public IList<Task> Tasks { get; }
+
+        public void Add(Task task)
+        {
+            Tasks.Add(task);
+        }
     }
 }

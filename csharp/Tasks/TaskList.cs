@@ -86,7 +86,7 @@ namespace Tasks
 				Console.WriteLine("Could not find a project with the name \"{0}\".", projectName);
 				return;
 			}
-			project.Tasks.Add(new Task { Id = NextId(), Description = description, Done = false });
+			project.Add(new Task { Id = NextId(), Description = description, Done = false });
 		}
 
 		private void Check(string idString)
