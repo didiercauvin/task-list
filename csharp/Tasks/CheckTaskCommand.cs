@@ -8,6 +8,13 @@ namespace Tasks
 {
     public class CheckTaskCommand
     {
+        public CheckTaskCommand(string taskId)
+        {
+            TaskId = taskId;
+        }
+
+        public string TaskId { get; }
+
         public class Handler
         {
             public void Execute(CheckTaskCommand command)
