@@ -10,6 +10,8 @@ namespace Tasks
     {
         public class Handler
         {
+            public Projects Projects { get; }
+
             public void Execute(CreateTaskCommand command)
             {
 
