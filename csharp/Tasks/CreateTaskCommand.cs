@@ -10,11 +10,13 @@ namespace Tasks
     {
         public Projects Projects { get; }
         public string TaskDescription { get; }
+        public string ProjectName { get; }
 
-        public CreateTaskCommand(Projects projects, string taskDescription)
+        public CreateTaskCommand(Projects projects, string taskDescription, string projectName)
         {
             Projects = projects;
             TaskDescription = taskDescription;
+            ProjectName = projectName;
         }
 
         public class Handler
