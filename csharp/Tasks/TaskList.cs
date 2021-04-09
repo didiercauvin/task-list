@@ -80,22 +80,7 @@ namespace Tasks
 
 		private void Uncheck(string idString)
 		{
-			SetDone(idString, false);
-		}
-
-		private void SetDone(string idString, bool done)
-		{
-			int id = int.Parse(idString);
-			var identifiedTask = projects
-				.Select(project => project.Tasks.FirstOrDefault(task => task.Id == id))
-				.Where(task => task != null)
-				.FirstOrDefault();
-			if (identifiedTask == null) {
-				console.WriteLine("Could not find a task with an ID of {0}.", id);
-				return;
-			}
-
-			identifiedTask.Done = done;
+			new UncheckTaskCommand.Handler(console).Execute(new UncheckTaskCommand(projects, idString));
 		}
 
 		private void Help()
