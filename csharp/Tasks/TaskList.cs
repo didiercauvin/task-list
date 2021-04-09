@@ -69,24 +69,8 @@ namespace Tasks
 				new CreateProjectCommand.Handler().Execute(new CreateProjectCommand(projects, subcommandRest[1]));
 			} else if (subcommand == "task") {
 				var projectTask = subcommandRest[1].Split(" ".ToCharArray(), 2);
-				AddTask(projectTask[0], projectTask[1]);
+				new CreateTaskCommand.Handler(NextId).Execute(new CreateTaskCommand(projects, projectTask[1], projectTask[0]));
 			}
-		}
-
-		private void AddProject(string name)
-		{
-			projects.Add(name);
-		}
-
-		private void AddTask(string projectName, string description)
-		{
-			var project = projects.FirstOrDefault(x => x.Name == projectName);
-			if (project == null)
-			{
-				Console.WriteLine("Could not find a project with the name \"{0}\".", projectName);
-				return;
-			}
-			project.Add(new Task { Id = NextId(), Description = description, Done = false });
 		}
 
 		private void Check(string idString)
